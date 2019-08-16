@@ -1,0 +1,9 @@
+site_name:        GitHubAPI.jl
+repo_url:         https://github.com/uva-bi-sdad/GitHubAPI.jl
+site_description: GitHubAPI.jl Docs
+site_author:      Biocomplexity Institute and Initiative, University of Virginia
+
+theme: material
+
+extra_css:
+  - assets/Documenter.css
