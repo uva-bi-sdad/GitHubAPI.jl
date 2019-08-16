@@ -15,18 +15,21 @@ module GitHubAPI
                      # Dates
                      @dateformat_str, Dates.format
     # Reading configuration file
-    conf = ConfParse("confs/config.simple");
-    parse_conf!(conf);
+    config = isfile(joinpath("confs", "config.simple"))
+    if config
+        conf = ConfParse("confs/config.simple");
+        parse_conf!(conf);
+        const db_user = retrieve(conf, "db_user");
+        const db_pwd = retrieve(conf, "db_pwd");
+        const github_login = retrieve(conf, "github_login");
+        github_token = retrieve(conf, "github_token");
+    end
     # SDAD Database [OSS prj]
     const db_host = "sdad.policy-analytics.net";
     const db_port = 5434;
     const dbname = "oss";
-    const db_user = retrieve(conf, "db_user");
-    const db_pwd = retrieve(conf, "db_pwd");
     # GitHub
     const github_endpoint = "https://api.github.com/graphql";
-    const github_login = retrieve(conf, "github_login");
-    github_token = retrieve(conf, "github_token");
     github_header = Dict("User-Agent" => github_login);
     # Queries depending on the stage
     const github_api_query = """
@@ -150,12 +153,14 @@ module GitHubAPI
                    user = $db_user
                    password = $db_pwd
                    """)
-    """
-        LICENSES::Vector{String}
-    A vector of every OSI-approved license (SPDX identifier).
-    """
-    const LICENSES = execute(make_connection(), "select id from licenses where osi") |>
-        (licenses -> getproperty.(licenses, :id))
+    if config
+        """
+            LICENSES::Vector{String}
+        A vector of every OSI-approved license (SPDX identifier).
+        """
+        const LICENSES = execute(make_connection(), "select id from licenses where osi") |>
+            (licenses -> getproperty.(licenses, :id))
+    end
     # execute(conn,
     #         """
     #         create table universe.github_repos(
@@ -181,9 +186,9 @@ module GitHubAPI
     #         )
     #         """)
     # GraphQL
-    client = GraphQLClient(github_endpoint,
-                           auth = "bearer $github_token",
-                           headers = github_header)
+    # client = GraphQLClient(github_endpoint,
+    #                        auth = "bearer $github_token",
+    #                        headers = github_header)
     """
         get_as_of(response::Response)::String
     Returns the zoned date time when the response was returned.
