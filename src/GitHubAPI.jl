@@ -23,6 +23,7 @@ module GitHubAPI
         const db_pwd = retrieve(conf, "db_pwd");
         const github_login = retrieve(conf, "github_login");
         github_token = retrieve(conf, "github_token");
+        github_header = Dict("User-Agent" => github_login);
     end
     # SDAD Database [OSS prj]
     const db_host = "sdad.policy-analytics.net";
@@ -30,7 +31,6 @@ module GitHubAPI
     const dbname = "oss";
     # GitHub
     const github_endpoint = "https://api.github.com/graphql";
-    github_header = Dict("User-Agent" => github_login);
     # Queries depending on the stage
     const github_api_query = """
         query LicenseCreated(\$license_created: String!) {
