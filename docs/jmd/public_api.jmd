@@ -1,4 +1,4 @@
-# Getting Started
+# Public API
 
 ## Access the application
 
@@ -27,14 +27,9 @@ The tables in the database related to monitoring the progress of the task are
 get_licenses
 ```
 
-## Connect to the database
-
-```@docs
-dbconnect
-```
-
 ## Run the scrapper
 
 ```@docs
 parse_repos!
+parse_commits!
 ```
