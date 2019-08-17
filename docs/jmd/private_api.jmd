@@ -1,0 +1,27 @@
+# Internals
+
+## Database
+
+```@docs
+GitHubAPI.db_host
+GitHubAPI.db_port
+GitHubAPI.dbname
+GitHubAPI.db_pwd
+GitHubAPI.db_user
+GitHubAPI.insert_record_repos_by_license!
+```
+
+## GitHub API
+
+```@docs
+GitHubAPI.github_endpoint
+GitHubAPI.github_login
+GitHubAPI.github_header
+GitHubAPI.github_api_query
+GitHubAPI.until
+GitHubAPI.binary_search_dt_interval
+GitHubAPI.github_wait_out
+GitHubAPI.response_dtf
+GitHubAPI.github_dtf
+GitHubAPI.get_as_of
+```
