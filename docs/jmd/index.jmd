@@ -1,7 +1,25 @@
 # GitHubAPI.jl
 
-Maintainer: [José Bayoán Santiago Calderón](https://jbsc.netlify.com) ([Nosferican](https://github.com/Nosferican))
+Author/Maintainer: [José Bayoán Santiago Calderón](https://jbsc.netlify.com) ([Nosferican](https://github.com/Nosferican))
 
-Check out the Public API section for documentation on how to use the application.
+This application is developed by the Social and Decision Analytics Division of the [Biocomplexity Institute and Initiative](https://biocomplexity.virginia.edu/), University of Virginia.
 
-The Private API (Internals) provide useful information, but is not required for usage.
+[GitHubAPI.jl](https://github.com/uva-bi-sdad/GitHubAPI.jl) is an application to collect GitHub data on open-source projects (i.e., commit data for repositories with OSI-approved licenses).
+
+## Prerequisites
+
+- [Julia](https://julialang.org/)
+- Internet access
+- Access to the SDAD `postgis_1/oss` database (contact [Aaron Schroeder](mailto:ads7fg@virginia.edu))
+- A [GitHub](https://Github.com/) account
+- A GitHub [personal access token](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line)
+
+!!! warning
+    Currently the application assumes one is working locally. This will change once the containers are set up.
+
+- Check out the Public API section for documentation on how to use the application.
+
+- The Private API (Internals) provide useful information, but is not required for usage.
+
+!!! note
+    While the application is meant for internal use. The code is ISC licensed and may be useful for other people. Do feel free to fork the project / re-use the code for your purposes.

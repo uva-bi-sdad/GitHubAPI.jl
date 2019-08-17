@@ -8,7 +8,10 @@ GitHubAPI.db_port
 GitHubAPI.dbname
 GitHubAPI.db_pwd
 GitHubAPI.db_user
+GitHubAPI.postgis_dtf
+GitHubAPI.dbconnect
 GitHubAPI.insert_record_repos_by_license!
+GitHubAPI.insert_commit!
 ```
 
 ## GitHub API
@@ -17,6 +20,7 @@ GitHubAPI.insert_record_repos_by_license!
 GitHubAPI.github_endpoint
 GitHubAPI.github_login
 GitHubAPI.github_header
+GitHubAPI.client
 GitHubAPI.github_api_query
 GitHubAPI.until
 GitHubAPI.binary_search_dt_interval

@@ -1,5 +1,6 @@
 name = "GitHubAPI"
 uuid = "b37ce95a-c5d2-4296-9f7e-3c1fb95d8677"
+version = "0.1.0"
 
 [deps]
 ConfParser = "88353bc9-fd38-507d-a820-d3b43837d6b9"
