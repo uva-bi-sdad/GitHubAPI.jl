@@ -9,7 +9,7 @@ This function writes the configurations to `confs/config.simple`
 - `db_user`: Your username for the `postgis_1` [database](http://sdad.policy-analytics.net:8080/?pgsql=postgis_1&db=oss&ns=universe) (i.e., your UVA computing ID).
 - `db_pwd`: The password for the `postgis_1` [database](http://sdad.policy-analytics.net:8080/?pgsql=postgis_1&db=oss&ns=universe).
 - `github_login`: Your GitHub login (handle).
-- `github_token`: A 40 alphanumeric characters string. Obtain a GitHub personal access token [here](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line).
+- `github_token`: A 40 alphanumeric characters string. Obtain a GitHub personal access token [here](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line) (only select read-access is required).
 # Examples
 ## Good!
 ```
