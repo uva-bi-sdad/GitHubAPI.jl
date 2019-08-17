@@ -1,3 +1,7 @@
 # GitHubAPI.jl
 
-For contributing, read the Getting Started guide.
+Maintainer: [José Bayoán Santiago Calderón](https://jbsc.netlify.com) ([Nosferican](https://github.com/Nosferican))
+
+Check out the Public API section for documentation on how to use the application.
+
+The Private API (Internals) provide useful information, but is not required for usage.
