@@ -101,7 +101,8 @@ module GitHubAPI
     end
     isfile(joinpath(dirname(@__DIR__), "config.simple")) ||
         sdad_setup!()
-    conf = ConfParse("confs/config.simple");
+    conf = ConfParse(joinpath(dirname(@__DIR__), "confs", "config.simple"),
+                     "simple");
     parse_conf!(conf);
     """
         db_user::String
