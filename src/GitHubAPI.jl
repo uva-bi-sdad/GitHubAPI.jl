@@ -109,22 +109,27 @@ module GitHubAPI
     The username for the [database](http://sdad.policy-analytics.net:8080/?pgsql=postgis_1&db=oss&ns=universe) (i.e., your UVA computing ID).
     """
     const db_user = retrieve(conf, "db_user");
+    const db_user = haskey(conf, "db_user") ?
+        retrieve(conf, "db_user") : "";
     """
         db_pwd::String
     The password for the [database](http://sdad.policy-analytics.net:8080/?pgsql=postgis_1&db=oss&ns=universe).
     """
-    const db_pwd = retrieve(conf, "db_pwd");
+    const db_pwd = haskey(conf, "db_pwd") ?
+        retrieve(conf, "db_pwd") : "";
     """
         github_login::String
     Your GitHub handle.
     """
-    const github_login = retrieve(conf, "github_login");
+    const github_login = haskey(conf, "github_login") ?
+        retrieve(conf, "github_login") : "";
     """
         github_header = Dict("User-Agent" => github_login)
     Header for the GitHub API.
     """
     const github_header = Dict("User-Agent" => github_login);
-    github_token = retrieve(conf, "github_token");
+    github_token = haskey(conf, "github_token") ?
+        retrieve(conf, "github_token") : "";
     # SDAD Database [OSS prj]
     """
         db_host = "sdad.policy-analytics.net"
