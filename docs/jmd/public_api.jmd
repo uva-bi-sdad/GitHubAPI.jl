@@ -18,7 +18,7 @@ sdad_setup!
 
 ## Identify some license which has not been scrapped yet.
 
-The tables in the database related to monitoring the progress of the task are
+The tables in the [database](http://sdad.policy-analytics.net:8080/?pgsql=postgis_1&db=oss&ns=universe) related to monitoring the progress of the task are
 
 - `universe.github_repos`
 - `universe.github_repos_tracker`
