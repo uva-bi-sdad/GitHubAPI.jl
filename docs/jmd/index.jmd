@@ -12,7 +12,7 @@ This application is developed by the Social and Decision Analytics Division of t
 - Internet access
 - Access to the SDAD `postgis_1/oss` database (contact [Aaron Schroeder](mailto:ads7fg@virginia.edu))
 - A [GitHub](https://Github.com/) account
-- A GitHub [personal access token](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line)
+- A GitHub [personal access token](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line) (only select read-access is required)
 
 !!! warning
     Currently the application assumes one is working locally. This will change once the containers are set up.

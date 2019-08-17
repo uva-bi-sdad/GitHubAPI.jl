@@ -6,7 +6,7 @@ Endpoint for the GitHub API v4 (GraphQL).
 const github_endpoint = "https://api.github.com/graphql";
 """
     client = GraphQLClient(github_endpoint,
-                           auth = "bearer $github_token",
+                           auth = "bearer \$github_token",
                            headers = github_header)
 Client for the GitHub API.
 """
