@@ -108,7 +108,6 @@ module GitHubAPI
         db_user::String
     The username for the [database](http://sdad.policy-analytics.net:8080/?pgsql=postgis_1&db=oss&ns=universe) (i.e., your UVA computing ID).
     """
-    const db_user = retrieve(conf, "db_user");
     const db_user = haskey(conf, "db_user") ?
         retrieve(conf, "db_user") : "";
     """
