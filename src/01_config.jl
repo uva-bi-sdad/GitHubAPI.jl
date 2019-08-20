@@ -59,11 +59,10 @@ function sdad_setup!(;db_user::AbstractString = "",
                       github_login::AbstractString = "",
                       github_token::AbstractString = "")
     args = ["db_user", "db_pwd", "github_login", "github_token"]
-    isdir(joinpath(dirname(@__DIR__), "confs")) ||
-        mkdir(joinpath(dirname(@__DIR__), "confs"))
-    isfile(joinpath(dirname(@__DIR__), "config.simple")) ||
-        touch(joinpath(dirname(@__DIR__), "confs", "config.simple"))
-    conf = ConfParse(joinpath(dirname(@__DIR__), "confs", "config.simple"),
+    isdir("confs") || mkdir("confs")
+    isfile(joinpath("confs", "config.simple")) ||
+        touch(joinpath("confs", "config.simple"))
+    conf = ConfParse(joinpath("confs", "config.simple"),
                      "simple")
     parse_conf!(conf)
     for (key, val) ∈ zip(args, [db_user, db_pwd, github_login, github_token])
@@ -82,12 +81,12 @@ function sdad_setup!(;db_user::AbstractString = "",
         end
     end
 end
-isfile(joinpath(dirname(@__DIR__), "config.simple")) ||
+isfile(joinpath("confs", "config.simple")) ||
     sdad_setup!(db_user = get(ENV, "db_user", ""),
                 db_pwd = get(ENV, "db_pwd", ""),
                 github_login = get(ENV, "github_login", ""),
                 github_token = get(ENV, "github_token", ""))
-conf = ConfParse(joinpath(dirname(@__DIR__), "confs", "config.simple"),
+conf = ConfParse(joinpath("confs", "config.simple"),
                  "simple");
 parse_conf!(conf);
 """
@@ -116,15 +115,15 @@ const github_header = Dict("User-Agent" => github_login);
 github_token = haskey(conf, "github_token") ?
     retrieve(conf, "github_token") : "";
 """
-    db_host = "sdad.policy-analytics.net"
+    db_host = "sdad.policy-analytics.net" | "postgis_1"
 Host for the [database](http://sdad.policy-analytics.net:8080/?pgsql=postgis_1&db=oss&ns=universe).
 """
-const db_host = "sdad.policy-analytics.net";
+const db_host = get(ENV, "SDAD", false) ? "postgis_1" : "sdad.policy-analytics.net";
 """
-    db_port = 5434
+    db_port = 5434 | 5432
 Port for the `postgis_1` in the [database](http://sdad.policy-analytics.net:8080/?pgsql=postgis_1&db=oss&ns=universe).
 """
-const db_port = 5434;
+const db_port = get(ENV, "SDAD", false) ? 5434 : 5432;
 """
     dbname = "oss"
 Database for the Open-Source Software project.

@@ -66,11 +66,12 @@ function parse_repos!(license::AbstractString,
         @assert(haskey(json, :data))
         data = json.data
         github_wait_out(data.rateLimit)
+        data = data.search
         conn = dbconnect()
         foreach(node -> insert_record_repos_by_license!(conn,
                                                         license, created_at, as_of,
                                                         node),
-                data.search.nodes)
+                data.nodes)
         close(conn)
     end
     dt_end = match(r"(?<=\.\.).*", created_at).match |>
@@ -112,9 +113,10 @@ function parse_repos!(license::AbstractString,
         @assert(haskey(json, :data))
         data = json.data
         github_wait_out(data.rateLimit)
+        data = data.search
         conn = dbconnect()
         foreach(node -> insert_record_repos_by_license!(license, created_at, as_of, node),
-                data.search.nodes)
+                data.nodes)
         close(conn)
     end
     dt_end = match(r"(?<=\.\.).*", created_at).match |>
