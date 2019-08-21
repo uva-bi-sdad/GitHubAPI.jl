@@ -40,19 +40,11 @@ julia> using GitHubAPI # config up-to-date
 ```
 !!! note
     Updating the configuration file requires a restart of the session.
-# Updating the GitHub personal access token
-## Permanent through the configuration file
+## Updating the GitHub personal access token
 ```
 julia> sdad_setup!(github_token = "0ipg0jvonteb54lv7j6cbgwn2snq3d3ac1pthxvz")
 😃
 ```
-## Temporarily
-```
-GitHubAPI.github_token = "0ipg0jvonteb54lv7j6cbgwn2snq3d3ac1pthxvz" # new value
-```
-!!! note
-    This method is temporary and will note overwrite the configuration file.
-    Only the GitHub personal access token is allowed to be modified temporarily.
 """
 function sdad_setup!(;db_user::AbstractString = "",
                       db_pwd::AbstractString = "",
