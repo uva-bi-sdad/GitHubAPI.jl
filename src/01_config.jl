@@ -59,7 +59,7 @@ function sdad_setup!(;db_user::AbstractString = "",
                       github_login::AbstractString = "",
                       github_token::AbstractString = "")
     args = ["db_user", "db_pwd", "github_login", "github_token"]
-    isdir("confs") || mkdir("confs")
+    isdir(joinpath(dirname(@__FILE__), "..", "confs")) || mkdir(joinpath(dirname(@__FILE__), "..", "confs"))
     isfile(joinpath(dirname(@__FILE__), "..", "confs", "config.simple")) ||
         touch(joinpath(dirname(@__FILE__), "..", "confs", "config.simple"))
     conf = ConfParse(joinpath(dirname(@__FILE__), "..", "confs", "config.simple"),
@@ -118,12 +118,12 @@ github_token = haskey(conf, "github_token") ?
     db_host = "postgis_1" | "sdad.policy-analytics.net"
 Host for the [database](http://sdad.policy-analytics.net:8080/?pgsql=postgis_1&db=oss&ns=universe).
 """
-const db_host = get(ENV, "SDAD", false) ? "postgis_1" : "sdad.policy-analytics.net";
+const db_host = get(ENV, "SDAD", "false") == "true" ? "postgis_1" : "sdad.policy-analytics.net";
 """
     db_port = 5432 | 5434
 Port for the `postgis_1` in the [database](http://sdad.policy-analytics.net:8080/?pgsql=postgis_1&db=oss&ns=universe).
 """
-const db_port = get(ENV, "SDAD", false) ? 5432 : 5434;
+const db_port = get(ENV, "SDAD", "false") == "true" ? 5432 : 5434;
 """
     dbname = "oss"
 Database for the Open-Source Software project.
