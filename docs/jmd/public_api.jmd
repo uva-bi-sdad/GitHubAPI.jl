@@ -20,14 +20,6 @@ Add the application as a dependency
 ]dev path/to/repo
 ```
 
-## Are you working locally or in the server?
-
-After starting Julia,
-
-```
-julia> ENV["SDAD"] = true # If working in a container in the server
-```
-
 ## Load the application
 
 ```
