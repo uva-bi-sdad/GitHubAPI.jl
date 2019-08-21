@@ -60,9 +60,9 @@ function sdad_setup!(;db_user::AbstractString = "",
                       github_token::AbstractString = "")
     args = ["db_user", "db_pwd", "github_login", "github_token"]
     isdir("confs") || mkdir("confs")
-    isfile(joinpath("confs", "config.simple")) ||
-        touch(joinpath("confs", "config.simple"))
-    conf = ConfParse(joinpath("confs", "config.simple"),
+    isfile(joinpath(dirname(@__FILE__), "..", "confs", "config.simple")) ||
+        touch(joinpath(dirname(@__FILE__), "..", "confs", "config.simple"))
+    conf = ConfParse(joinpath(dirname(@__FILE__), "..", "confs", "config.simple"),
                      "simple")
     parse_conf!(conf)
     for (key, val) ∈ zip(args, [db_user, db_pwd, github_login, github_token])
@@ -81,12 +81,12 @@ function sdad_setup!(;db_user::AbstractString = "",
         end
     end
 end
-isfile(joinpath("confs", "config.simple")) ||
+isfile(joinpath(dirname(@__FILE__), "..", "confs", "config.simple")) ||
     sdad_setup!(db_user = get(ENV, "db_user", ""),
                 db_pwd = get(ENV, "db_pwd", ""),
                 github_login = get(ENV, "github_login", ""),
                 github_token = get(ENV, "github_token", ""))
-conf = ConfParse(joinpath("confs", "config.simple"),
+conf = ConfParse(joinpath(dirname(@__FILE__), "..", "confs", "config.simple"),
                  "simple");
 parse_conf!(conf);
 """
