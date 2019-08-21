@@ -2,8 +2,28 @@
 
 ## Access the application
 
+Git clone the repository.
+
 ```
-]dev https://github.com/uva-bi-sdad/GitHubAPI.jl
+> git clone https://github.com/uva-bi-sdad/GitHubAPI.jl.git
+```
+
+Activate your project environment
+
+```
+]activate .
+```
+
+Add the application as a dependency
+
+```
+]dev path/to/repo
+```
+
+## Load the application
+
+```
+julia> using GitHubAPI
 ```
 
 ```@docs

@@ -50,10 +50,12 @@ function parse_repos!(license::AbstractString,
                on conflict (spdx, query) do update set
                total = excluded.total
             """)
-    foreach(node -> insert_record_repos_by_license!(conn,
-                                                    license, created_at, as_of,
-                                                    node),
-            data.nodes)
+    if !isempty(data.nodes)
+        foreach(node -> insert_record_repos_by_license!(conn,
+                                                        license, created_at, as_of,
+                                                        node),
+                data.nodes)
+    end
     close(conn)
     while data.pageInfo.hasNextPage
         result = client.Query(github_api_query,
@@ -66,11 +68,14 @@ function parse_repos!(license::AbstractString,
         @assert(haskey(json, :data))
         data = json.data
         github_wait_out(data.rateLimit)
+        data = data.search
         conn = dbconnect()
-        foreach(node -> insert_record_repos_by_license!(conn,
-                                                        license, created_at, as_of,
-                                                        node),
-                data.search.nodes)
+        if !isempty(data.nodes)
+            foreach(node -> insert_record_repos_by_license!(conn,
+                                                            license, created_at, as_of,
+                                                            node),
+                    data.nodes)
+        end
         close(conn)
     end
     dt_end = match(r"(?<=\.\.).*", created_at).match |>
@@ -96,10 +101,12 @@ function parse_repos!(license::AbstractString,
                on conflict (spdx, query) do update set
                total = excluded.total
             """)
-    foreach(node -> insert_record_repos_by_license!(conn,
-                                                    license, created_at, as_of,
-                                                    node),
-            data.nodes)
+    if !isempty(data.nodes)
+        foreach(node -> insert_record_repos_by_license!(conn,
+                                                        license, created_at, as_of,
+                                                        node),
+                data.nodes)
+    end
     close(conn)
     while data.pageInfo.hasNextPage
         result = client.Query(github_api_query,
@@ -112,9 +119,14 @@ function parse_repos!(license::AbstractString,
         @assert(haskey(json, :data))
         data = json.data
         github_wait_out(data.rateLimit)
+        data = data.search
         conn = dbconnect()
-        foreach(node -> insert_record_repos_by_license!(license, created_at, as_of, node),
-                data.search.nodes)
+        if !isempty(data.nodes)
+            foreach(node -> insert_record_repos_by_license!(conn,
+                                                            license, created_at, as_of,
+                                                            node),
+                    data.nodes)
+        end
         close(conn)
     end
     dt_end = match(r"(?<=\.\.).*", created_at).match |>
@@ -156,7 +168,9 @@ function parse_commits!(slug::AbstractString,
     github_wait_out(json.data.rateLimit)
     data = json.data.repository.defaultBranchRef.target.history
     conn = dbconnect()
-    foreach(node -> insert_commit!(conn, slug, node), data.nodes)
+    if !isempty(data.nodes)
+        foreach(node -> insert_commit!(conn, slug, node), data.nodes)
+    end
     close(conn)
     while data.pageInfo.hasNextPage
         result = client.Query(github_api_query,
@@ -170,7 +184,9 @@ function parse_commits!(slug::AbstractString,
         github_wait_out(json.data.rateLimit)
         data = json.data.repository.defaultBranchRef.target.history
         conn = dbconnect()
-        foreach(node -> insert_commit!(conn, slug, node), data.nodes)
+        if !isempty(data.nodes)
+            foreach(node -> insert_commit!(conn, slug, node), data.nodes)
+        end
         close(conn)
     end
 end

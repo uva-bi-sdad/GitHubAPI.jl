@@ -14,9 +14,6 @@ This application is developed by the Social and Decision Analytics Division of t
 - A [GitHub](https://Github.com/) account
 - A GitHub [personal access token](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line) (only select read-access is required)
 
-!!! warning
-    Currently the application assumes one is working locally. This will change once the containers are set up.
-
 - Check out the Public API section for documentation on how to use the application.
 
 - The Private API (Internals) provide useful information, but is not required for usage.

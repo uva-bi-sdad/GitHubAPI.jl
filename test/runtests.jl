@@ -1,5 +1,8 @@
 using Test, GitHubAPI
 
+@testset "Licenses" begin
+    @test isa(get_licenses(), Vector{String})
+end
 @testset "Search" begin
     @test parse_repos!("postgresql")
     @test parse_repos!("postgresql",
