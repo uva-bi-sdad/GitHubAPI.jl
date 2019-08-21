@@ -86,34 +86,30 @@ isfile(joinpath(dirname(@__FILE__), "..", "confs", "config.simple")) ||
                 db_pwd = get(ENV, "db_pwd", ""),
                 github_login = get(ENV, "github_login", ""),
                 github_token = get(ENV, "github_token", ""))
-conf = ConfParse(joinpath(dirname(@__FILE__), "..", "confs", "config.simple"),
-                 "simple");
+const conf = ConfParse(joinpath(dirname(@__FILE__), "..", "confs", "config.simple"),
+                       "simple");
 parse_conf!(conf);
 """
     db_user::String
 The username for the [database](http://sdad.policy-analytics.net:8080/?pgsql=postgis_1&db=oss&ns=universe) (i.e., your UVA computing ID).
 """
-const db_user = haskey(conf, "db_user") ?
-    retrieve(conf, "db_user") : "";
+const db_user = haskey(conf, "db_user") ? retrieve(conf, "db_user") : "";
 """
     db_pwd::String
 The password for the [database](http://sdad.policy-analytics.net:8080/?pgsql=postgis_1&db=oss&ns=universe).
 """
-const db_pwd = haskey(conf, "db_pwd") ?
-    retrieve(conf, "db_pwd") : "";
+const db_pwd = haskey(conf, "db_pwd") ? retrieve(conf, "db_pwd") : "";
 """
     github_login::String
 Your GitHub handle.
 """
-const github_login = haskey(conf, "github_login") ?
-    retrieve(conf, "github_login") : "";
+const github_login = haskey(conf, "github_login") ? retrieve(conf, "github_login") : "";
 """
     github_header = Dict("User-Agent" => github_login)
 Header for the GitHub API.
 """
 const github_header = Dict("User-Agent" => github_login);
-github_token = haskey(conf, "github_token") ?
-    retrieve(conf, "github_token") : "";
+const github_token = haskey(conf, "github_token") ? retrieve(conf, "github_token") : "";
 """
     db_host = "postgis_1" | "sdad.policy-analytics.net"
 Host for the [database](http://sdad.policy-analytics.net:8080/?pgsql=postgis_1&db=oss&ns=universe).
@@ -152,5 +148,5 @@ const github_dtf = "yyyy-mm-ddTHH:MM:SSzzzz";
     until::ZonedDateTime
 Until when should the scrapper query data. Currently at `"2019-08-15T00:00:00-04:00"`.
 """
-until = ZonedDateTime("2019-08-15T00:00:00-04:00",
-                      github_dtf)
+const until = ZonedDateTime("2019-08-15T00:00:00-04:00",
+                            github_dtf)
