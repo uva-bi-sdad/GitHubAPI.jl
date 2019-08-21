@@ -17,6 +17,15 @@ module GitHubAPI
     using TimeZones: localzone, now, today, yearmonthday, ZonedDateTime,
                      # Dates
                      @dateformat_str, Dates.format
+    # Compat
+    if !@isdefined(isnothing)
+        isnothing(::Any) = false
+        isnothing(::Nothing) = true
+    end
+    if !@isdefined(ismissing)
+        isnothing(::Any) = false
+        isnothing(::Missing) = true
+    end
     foreach(include,
             file for file ∈ readdir(@__DIR__) if !isequal("GitHubAPI.jl", file))
     export get_licenses, dbconnect, parse_repos!, parse_commits!, sdad_setup!
