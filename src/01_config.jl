@@ -115,15 +115,15 @@ const github_header = Dict("User-Agent" => github_login);
 github_token = haskey(conf, "github_token") ?
     retrieve(conf, "github_token") : "";
 """
-    db_host = "sdad.policy-analytics.net" | "postgis_1"
+    db_host = "postgis_1" | "sdad.policy-analytics.net"
 Host for the [database](http://sdad.policy-analytics.net:8080/?pgsql=postgis_1&db=oss&ns=universe).
 """
 const db_host = get(ENV, "SDAD", false) ? "postgis_1" : "sdad.policy-analytics.net";
 """
-    db_port = 5434 | 5432
+    db_port = 5432 | 5434
 Port for the `postgis_1` in the [database](http://sdad.policy-analytics.net:8080/?pgsql=postgis_1&db=oss&ns=universe).
 """
-const db_port = get(ENV, "SDAD", false) ? 5434 : 5432;
+const db_port = get(ENV, "SDAD", false) ? 5432 : 5434;
 """
     dbname = "oss"
 Database for the Open-Source Software project.
