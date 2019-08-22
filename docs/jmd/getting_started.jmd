@@ -11,7 +11,7 @@ You will need a valid email account. I suggest you complete your GitHub profile 
 You will need a GitHub Personal Access Token to use the GitHub API.
 
 - Log in to [GitHub.com](https://github.com).
-- Access the generating tokens under developer settings (https://github.com/settings/tokens/new)
+- Access the generating tokens under developer settings ([New GitHub Personal Access Token](https://github.com/settings/tokens/new))
 - For note, you may fill in something like OSS Scraper
 - For the scopes, choose read access only
   - repo
@@ -22,10 +22,10 @@ You will need a GitHub Personal Access Token to use the GitHub API.
     - read:email
 and generate the new personal access token.
 
-You should see a a 40 alphanumeric characters value. Same that value somewhere safe (e.g., a password manager like LastPass).
+You should see a 40 alphanumeric character value. Same that value somewhere safe (e.g., a password manager like LastPass).
 
 !!! warning
-    You will only see the value once so be sure to save it!
+    You will only see the personal access token once so be sure to save it!
 
 That is all you need to do to to activate the personal access token.
 
@@ -54,21 +54,30 @@ If there are any permission issues, contact José Bayoán Santiago Calderón ask
 
 #### Install an Integrated Development Environment
 
-- After installing Julia, choose your favorite IDE (e.g., [Atom](http://docs.junolab.org/stable/))
+- After installing Julia, choose your favorite IDE (e.g., [Atom/Juno](http://docs.junolab.org/stable/))
 
 #### Obtain the Application
 
 - Clone the GitHubAPI.jl application through
 
+!!! note
+    `>` The command prompt means using the terminal.
+
 ```
-> git clone https://github.com/uva-bi-sdad/GitHubAPI.jl.git dir-name-for-app/GitHubAPI.jl
+> git clone https://github.com/uva-bi-sdad/GitHubAPI.jl.git
 ```
 
-where `dir-name-for-app/GitHubAPI.jl` is the destination to where the repository will be cloned.
+If you want to save it somewhere in particular you can add a second argument to `git clone` giving it a destination directory.
+
+For example, `git clone https://github.com/uva-bi-sdad/GitHubAPI.jl.git dir-name-for-app/GitHubAPI.jl` which would save the repository at that destination.
 
 You could also clone it using the [GitHub Desktop](https://desktop.github.com/) application.
 
 #### Setting the environment
+
+!!! note
+    The `]` is used in Julia to access the Pkg REPL.
+    The `;` is used to access the Shell mode.
 
 - Using Julia navigate generate the environment for an application
 
@@ -117,6 +126,9 @@ Log in with credentials you were provided.
 
 Open a new terminal (Other: new/Terminal)
 
+!!! note
+    `>` The command prompt means using the terminal.
+
 ```
 > git clone https://github.com/uva-bi-sdad/GitHubAPI.jl.git
 ```
@@ -124,6 +136,10 @@ Open a new terminal (Other: new/Terminal)
 #### Setting the environment
 
 - Open a new Julia kernel
+
+!!! note
+    The `]` is used in Julia to access the Pkg REPL.
+    The `;` is used to access the Shell mode.
 
 ```
 julia> ]generate dir-for-dev
