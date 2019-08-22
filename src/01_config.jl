@@ -44,10 +44,6 @@ julia> using GitHubAPI # config up-to-date
 ```
 !!! note
     Updating the configuration file requires a restart of the session.
-## Updating the GitHub personal access token
-```
-julia> sdad_setup!(github_token = "0ipg0jvonteb54lv7j6cbgwn2snq3d3ac1pthxvz")
-😃
 ```
 """
 function sdad_setup!(;db_user::AbstractString = "",

@@ -1,0 +1,154 @@
+# Credentials
+
+## GitHub Account
+
+You can sign up for a GitHub account through [GitHub.com](https://github.com).
+
+You will need a valid email account. I suggest you complete your GitHub profile as well including a public email, name, etc.
+
+## GitHub Personal Access Token
+
+You will need a GitHub Personal Access Token to use the GitHub API.
+
+- Log in to [GitHub.com](https://github.com).
+- Access the generating tokens under developer settings (https://github.com/settings/tokens/new)
+- For note, you may fill in something like OSS Scraper
+- For the scopes, choose read access only
+  - repo
+  - admin
+    - read:org
+  - user
+    - read:user
+    - read:email
+and generate the new personal access token.
+
+You should see a a 40 alphanumeric characters value. Same that value somewhere safe (e.g., a password manager like LastPass).
+
+!!! warning
+    You will only see the value once so be sure to save it!
+
+That is all you need to do to to activate the personal access token.
+
+## Database Access to `postgis_1/oss.universe`
+
+Log in to the [database](http://sdad.policy-analytics.net:8080/?pgsql=postgis_1&db=oss&ns=universe)
+
+Your username will be your UVA computing ID
+
+Make sure you can see the various tables in the database/schema.
+
+- `licenses`
+- `github_repos`
+- `github_repos_tracker`
+- `github_commits`
+
+If there are any permission issues, contact José Bayoán Santiago Calderón asking for database access.
+
+## Working Local vs in the Server
+
+### Local
+
+#### Installing Julia
+
+- You will need to download [Julia](https://julialang.org/downloads/) (latest release `v"1.2.0"`)
+
+#### Install an Integrated Development Environment
+
+- After installing Julia, choose your favorite IDE (e.g., [Atom](http://docs.junolab.org/stable/))
+
+#### Obtain the Application
+
+- Clone the GitHubAPI.jl application through
+
+```
+> git clone https://github.com/uva-bi-sdad/GitHubAPI.jl.git dir-name-for-app/GitHubAPI.jl
+```
+
+where `dir-name-for-app/GitHubAPI.jl` is the destination to where the repository will be cloned.
+
+You could also clone it using the [GitHub Desktop](https://desktop.github.com/) application.
+
+#### Setting the environment
+
+- Using Julia navigate generate the environment for an application
+
+```
+julia> ]generate new-dir-for-dev
+```
+
+Activate the environment through
+
+```
+julia> ;cd new-dir-for-dev
+julia> ]activate .
+```
+
+or
+
+```
+julia> ]activate new-dir-for-dev
+```
+
+- Add the GitHubAPI application through
+
+```
+julia> ]dev dir-name-for-app/GitHubAPI.jl
+```
+
+You should check everything is good through
+
+```
+julia> ]st
+```
+
+which should list GitHubAPI as a dependency for that environment.
+
+### Server
+
+#### Connect to your Anaconda container
+
+- You should be able to connect to your Anaconda Jupyter datascience container at
+
+`http://sdad.policy-analytics.net:some_port_you_were_given`
+
+Log in with credentials you were provided.
+
+#### Obtain the Application
+
+Open a new terminal (Other: new/Terminal)
+
+```
+> git clone https://github.com/uva-bi-sdad/GitHubAPI.jl.git
+```
+
+#### Setting the environment
+
+- Open a new Julia kernel
+
+```
+julia> ]generate dir-for-dev
+julia> ;cd dir-for-dev
+julia> ]activate .
+julia> ]dev ~/GitHubAPI.jl
+```
+
+You should check everything is good through
+
+```
+julia> ]st
+```
+
+which should list GitHubAPI as a dependency for that environment.
+
+## Next Steps
+
+When running the application either through the container or locally, run Julia from `dir-for-dev`.
+Either run
+```
+> julia --project
+```
+
+or after Julia is running,
+```
+julia> ]activate .
+```

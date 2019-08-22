@@ -27,8 +27,7 @@ parse_repos!("zlib")
 
 After checking the [`github_repos_tracker`](http://sdad.policy-analytics.net:8080/?pgsql=postgis_1&db=oss&ns=universe&select=github_repos_tracker),
 
-If the license scrapper already has completed some work, you can resume the job
-by passing the `created_at` argument.
+If the license scrapper already has completed some work, you can resume the job by passing the `created_at` argument.
 
 ```
 parse_repos!("zlib",
@@ -189,4 +188,5 @@ function parse_commits!(slug::AbstractString,
         end
         close(conn)
     end
+    true
 end

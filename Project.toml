@@ -12,7 +12,7 @@ TimeZones = "f269a46b-ccf7-5d73-abea-4c690281aa53"
 
 [compat]
 ConfParser = "0.1.1"
-Diana = "0.1"
+Diana = "0.1, 0.2"
 JSON3 = "0.1"
 LibPQ = "0.11"
 Parameters = "0.11"

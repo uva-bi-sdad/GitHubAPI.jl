@@ -23,11 +23,16 @@ end
 """
     get_licenses()::Vector{String}
 List of SPDX ID for every OSI-approved license. (source: [SPDX](https://github.com/spdx/license-list-data))
+
+# Example
+```
+licences = get_licenses()
+```
 """
 function get_licenses()
     conn = dbconnect()
-    output = execute(conn, "select id from licenses where osi") |>
-        (licenses -> getproperty.(licenses, :id))
+    output = execute(conn, "select spdx from universe.licenses") |>
+        (licenses -> getproperty.(licenses, :spdx))
     close(conn)
     output
 end
