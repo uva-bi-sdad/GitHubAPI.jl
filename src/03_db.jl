@@ -74,6 +74,13 @@ end
 #           primary key (slug, sha)
 #         )
 #         """)
+# execute(conn,
+#         """
+#         create table universe.bad_repos(
+#           slug text not null,
+#           primary key (slug)
+#         )
+#         """)
 """
     insert_record_repos_by_license!(conn::Connection,
                                     license::AbstractString,

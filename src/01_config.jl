@@ -44,7 +44,6 @@ julia> using GitHubAPI # config up-to-date
 ```
 !!! note
     Updating the configuration file requires a restart of the session.
-```
 """
 function sdad_setup!(;db_user::AbstractString = "",
                       db_pwd::AbstractString = "",

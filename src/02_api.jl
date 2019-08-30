@@ -96,7 +96,7 @@ const github_api_query = """
         defaultBranchRef {
           target {
             ... on Commit {
-              history(first: 100, until: \$until) {
+              history(first: 1, until: \$until) {
                 ...CommitHistory
               }
             }

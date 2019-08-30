@@ -172,21 +172,25 @@ function parse_commits!(slug::AbstractString,
     end
     close(conn)
     while data.pageInfo.hasNextPage
-        result = client.Query(github_api_query,
-                              operationName = "RepositoryCursor",
-                              vars = Dict("owner" => owner,
-                                          "name" => name,
-                                          "until" => until,
-                                          "cursor" => data.pageInfo.endCursor))
-        json = JSON3.read(result.Data)
-        @assert(haskey(json, :data))
-        github_wait_out(json.data.rateLimit)
-        data = json.data.repository.defaultBranchRef.target.history
-        conn = dbconnect()
-        if !isempty(data.nodes)
-            foreach(node -> insert_commit!(conn, slug, node), data.nodes)
+        try
+            result = client.Query(github_api_query,
+                                  operationName = "RepositoryCursor",
+                                  vars = Dict("owner" => owner,
+                                              "name" => name,
+                                              "until" => until,
+                                              "cursor" => data.pageInfo.endCursor))
+            json = JSON3.read(result.Data)
+            @assert(haskey(json, :data))
+            github_wait_out(json.data.rateLimit)
+            data = json.data.repository.defaultBranchRef.target.history
+            conn = dbconnect()
+            if !isempty(data.nodes)
+                foreach(node -> insert_commit!(conn, slug, node), data.nodes)
+            end
+            close(conn)
+        catch
+            sleep(1)
         end
-        close(conn)
     end
     true
 end
