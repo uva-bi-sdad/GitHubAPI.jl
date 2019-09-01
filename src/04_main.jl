@@ -165,6 +165,25 @@ function parse_commits!(slug::AbstractString,
     json = JSON3.read(result.Data)
     @assert(haskey(json, :data))
     github_wait_out(json.data.rateLimit)
+    if haskey(json, :errors)
+        if json.errors[1].type == "NOT_FOUND"
+            oid = join("0" for x ∈ 1:40)
+            login = "null"
+            additions = "null"
+            deletions = "null"
+            committedDate = "null"
+            conn = dbconnect()
+            execute(conn,
+                    """insert into universe.github_commits values(
+                       '$slug', $login, '$oid',
+                       $additions, $deletions, $committedDate
+                       )
+                       on conflict (slug, sha) do nothing
+                    """)
+            close(conn)
+            return true
+        end
+    end
     data = json.data.repository.defaultBranchRef.target.history
     conn = dbconnect()
     if !isempty(data.nodes)
