@@ -1,7 +1,6 @@
 # GitHubAPI.jl
 SDAD internal application for GitHub data (OSS project)
 
-[![License: ISC - Permissive License](https://img.shields.io/badge/License-ISC-green.svg)](https://img.shields.io/github/license/uva-bi-sdad/GitHubAPI.jl)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Build Status](https://travis-ci.com/uva-bi-sdad/GitHubAPI.jl.svg?branch=master)](https://travis-ci.com/uva-bi-sdad/GitHubAPI.jl)
 [![Code Coverage](https://codecov.io/gh/uva-bi-sdad/GitHubAPI.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/uva-bi-sdad/GitHubAPI.jl)
