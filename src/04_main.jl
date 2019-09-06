@@ -166,7 +166,7 @@ function parse_commits!(slug::AbstractString,
     @assert(haskey(json, :data))
     github_wait_out(json.data.rateLimit)
     if haskey(json, :errors)
-        if json.errors[1].type == "NOT_FOUND"
+        if json.errors[1].type ∈ ["NOT_FOUND", "SERVICE_UNAVAILABLE"]
             oid = join("0" for x ∈ 1:40)
             login = "null"
             additions = "null"
